@@ -25,29 +25,29 @@ RUN apt-get -yqq update \
     && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && /usr/sbin/locale-gen && TZ=Asia/Kolkata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN /bin/sh -c git config --global user.name greengreen2212 && git config --global user.email greenhumam@protonmail.com
+RUN git config --global user.name greengreen2212 && git config --global user.email greenhumam@protonmail.com
 
-RUN /bin/sh -c apt-get install tzdata && apt-mark hold tzdata && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && echo Asia/Kolkota > /etc/timezone
+RUN apt-get install tzdata && apt-mark hold tzdata && ln -snf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && echo Asia/Kolkota > /etc/timezone
 
-RUN /bin/sh -c python3 -m pip  install networkx && ln -sf /usr/bin/python3 /usr/bin/python 
+RUN python3 -m pip  install networkx && ln -sf /usr/bin/python3 /usr/bin/python 
 
-RUN /bin/sh -c git clone --depth 1 https://github.com/CyberJalagam/android_rom_building_scripts scripts && bash scripts/build.sh 
+RUN git clone --depth 1 https://github.com/CyberJalagam/android_rom_building_scripts scripts && bash scripts/build.sh 
 
-RUN /bin/sh -c git clone --depth 1 https://github.com/mirror/make $WORKDIR/make && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" && sudo install ./make /usr/bin/make 
+RUN git clone --depth 1 https://github.com/mirror/make $WORKDIR/make && cd $WORKDIR/make && ./bootstrap && ./configure && make CFLAGS="-O3" && sudo install ./make /usr/bin/make 
 
-RUN /bin/sh -c wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.2.2.tar.gz && tar xzf libwebp-1.2.2.tar.gz && cd libwebp-1.2.2 && export PATH="/usr/lib/ccache:$PATH" && which clang && ./configure && make -j$(nproc --all) 
+RUN wget https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.2.2.tar.gz && tar xzf libwebp-1.2.2.tar.gz && cd libwebp-1.2.2 && export PATH="/usr/lib/ccache:$PATH" && which clang && ./configure && make -j$(nproc --all) 
 
-RUN /bin/sh -c git clone --depth 1 https://github.com/ninja-build/ninja.git $WORKDIR/ninja && cd $WORKDIR/ninja && ./configure.py --bootstrap && sudo install ./ninja /usr/bin/ninja
+RUN git clone --depth 1 https://github.com/ninja-build/ninja.git $WORKDIR/ninja && cd $WORKDIR/ninja && ./configure.py --bootstrap && sudo install ./ninja /usr/bin/ninja
 
-RUN /bin/sh -c git clone --depth 1 https://github.com/google/kati.git $WORKDIR/kati && cd $WORKDIR/kati && make ckati && sudo install ./ckati /usr/bin/ckati 
+RUN git clone --depth 1 https://github.com/google/kati.git $WORKDIR/kati && cd $WORKDIR/kati && make ckati && sudo install ./ckati /usr/bin/ckati 
 
-RUN /bin/sh -c axel -a -n 10 https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz && tar xvzf zstd-1.5.0.tar.gz && cd zstd-1.5.0 && sudo make install 
+RUN axel -a -n 10 https://github.com/facebook/zstd/releases/download/v1.5.0/zstd-1.5.0.tar.gz && tar xvzf zstd-1.5.0.tar.gz && cd zstd-1.5.0 && sudo make install 
 
-RUN /bin/sh -c curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone 
+RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone 
 
-RUN /bin/sh -c git clone --depth 1 https://github.com/TheLartians/Ccache.cmake $WORKDIR/Ccache.cmake && cd $WORKDIR/Ccache.cmake && cmake -Htest -Bbuild -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" && cmake --build build && cmake -Htest -Bbuildx -GNinja -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" && cmake --build buildx
+RUN git clone --depth 1 https://github.com/TheLartians/Ccache.cmake $WORKDIR/Ccache.cmake && cd $WORKDIR/Ccache.cmake && cmake -Htest -Bbuild -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" && cmake --build build && cmake -Htest -Bbuildx -GNinja -DUSE_CCACHE=YES -DCCACHE_OPTIONS="CCACHE_CPP2=true;CCACHE_SLOPPINESS=clang_index_store" && cmake --build buildx
 
-RUN /bin/sh -c rm -rf /var/lib/dpkg/info/*.postinst && dpkg --configure -a && rm -rf libwebp-1.2.2.tar.gz && rm -rf rclone-current-linux-amd64.zip && rm -rf zstd-1.5.0.tar.gz && rm -rf * && rm -rf /var/lib/apt/lists/* 
+RUN rm -rf /var/lib/dpkg/info/*.postinst && dpkg --configure -a && rm -rf libwebp-1.2.2.tar.gz && rm -rf rclone-current-linux-amd64.zip && rm -rf zstd-1.5.0.tar.gz && rm -rf * && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /tmp
 
