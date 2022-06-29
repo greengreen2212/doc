@@ -1,3 +1,4 @@
+FROM ubuntu:21.10
 CMD ["bash"]
 LABEL maintainer=greengreen2212
 ENV DEBIAN_FRONTEND=noninteractive
