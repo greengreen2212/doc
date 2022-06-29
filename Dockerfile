@@ -1,6 +1,6 @@
 FROM ubuntu:21.10
 CMD ["bash"]
-LABEL maintainer=greengreen <greenhumam@protonmail.com>
+LABEL maintainer=greengreen2212
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8
 ENV LC_ALL=C
