@@ -27,6 +27,6 @@ jobs:
       with: 
         context: .
         push: true
-        tags: greengreen2212/ubuntu:21.10
+        tags: greengreen2212/ubuntu:21.10, greengreen2212/ubuntu:${{ github.run_number }}
         
       
