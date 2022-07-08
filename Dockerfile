@@ -6,8 +6,8 @@ ENV LANG=C.UTF-8
 ENV LC_ALL=C
 ENV CIRRUS_CPU=24
 ENV USE_CCACHE=1
-ENV ANDROID_JACK_VM_ARGS=-Dfile.encoding=UTF-8 
-ENV ANDROID_JACK_VM_ARGS=-XX:+TieredCompilation 
+#ENV ANDROID_JACK_VM_ARGS=-Dfile.encoding=UTF-8 
+#ENV ANDROID_JACK_VM_ARGS=-XX:+TieredCompilation 
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
