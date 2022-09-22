@@ -1,0 +1,15 @@
+name: test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: greengreen2212/ubuntu:17
+
+    steps:
+    - name: test
+      run: timeout 15 echo "test complete"
