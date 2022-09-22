@@ -12,4 +12,4 @@ jobs:
 
     steps:
     - name: test
-      run: timeout 15 sleep 20 & echo "test complete"
+      run: timeout 15 sleep 20 && echo "test complete"
