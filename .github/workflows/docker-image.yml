@@ -27,6 +27,6 @@ jobs:
       with: 
         context: .
         push: true
-        tags: greengreen2212/ubuntu:21.10, greengreen2212/ubuntu:${{ github.run_number }}, greengreen2212/ubuntu:jadis
+        tags: greengreen2212/ubuntu:20.04, greengreen2212/ubuntu:${{ github.run_number }}, greengreen2212/ubuntu:timeout
         
       
